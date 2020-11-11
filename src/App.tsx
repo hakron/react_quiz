@@ -3,6 +3,7 @@ import { QuestionCard } from "./components/QuestionCard/QuestionCard";
 import { fetchQuizQuestions } from "./API";
 import { QuestionState, Difficulty } from "./types";
 import { GlobalStyle, Wrapper } from "./App.styles";
+import { ScoreCard } from "./components/ScoreCard/ScoreCard";
 
 export type AnswerObject = {
   question: string;
@@ -52,17 +53,29 @@ function App() {
 
   const nextQuestion = () => {
     const nextQuestion = number + 1;
-    if (nextQuestion === TOTAL_QUESTIONS) {
+    if (nextQuestion === TOTAL_QUESTIONS - 1) {
+      console.log("inside :>> ");
       setGameOver(true);
     } else {
       setNumber(nextQuestion);
     }
   };
+
+  console.log("gameOver :>> ", gameOver);
+  console.log("userAnswers :>> ", userAnswers);
+  console.log("loading :>> ", loading);
   return (
     <>
       <GlobalStyle />
       <Wrapper>
-        <h1>REACT QUIZ</h1>
+        <h1>QuizMe</h1>
+        {gameOver && userAnswers.length === 9 && (
+          <ScoreCard
+            totalQuestions={TOTAL_QUESTIONS}
+            score={score}
+            userAnswers={userAnswers}
+          />
+        )}
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
           <button className="start" onClick={startQuiz}>
             Start
