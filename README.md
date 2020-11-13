@@ -4,6 +4,13 @@ Deployed with Firebase<br />
 Demo [https://quizme-74979.web.app/](
 https://quizme-74979.web.app/)
 
+## Introduction
+
+React quiz using React, React Hooks and styled components, API data fetching.
+
+API used: https://opentdb.com/api
+
+
 ## Available Scripts
 
 In the project directory, you can run:
